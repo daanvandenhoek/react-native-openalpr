@@ -61,6 +61,7 @@ public class ReactCameraManager extends SimpleViewManager<FrameLayout> implement
                 event.putString("plate", plate);
                 event.putString("confidence", confidence);
                 event.putString("processingTimeMs", processingTimeMs);
+                event.putString("coordinates", coordinates.toString();
                 ReactContext reactContext = context;
                 reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                         preview.getId(),
