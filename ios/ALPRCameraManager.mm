@@ -336,7 +336,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             if (result && self.camera.onPlateRecognized) {
                 self.camera.onPlateRecognized(@{
                     @"confidence": @(result.confidence),
-                    @"plate": result.plate
+                    @"plate": result.plate,
+                    @"coordinates": result.points
                 });
             }
             
