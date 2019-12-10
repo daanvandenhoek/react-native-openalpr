@@ -61,7 +61,7 @@ public class ReactCameraManager extends SimpleViewManager<FrameLayout> implement
                 event.putString("plate", plate);
                 event.putString("confidence", confidence);
                 event.putString("processingTimeMs", processingTimeMs);
-                event.putString("coordinates", coordinates.toString());
+                event.putString("coordinates", coordinatesToJson());
                 ReactContext reactContext = context;
                 reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                         preview.getId(),
@@ -75,6 +75,15 @@ public class ReactCameraManager extends SimpleViewManager<FrameLayout> implement
             }
         });
         return preview;
+    }
+
+    public String coordinatesToJson(List<Point> coordinates) {
+        String data = "[";
+        for (Point point : coordinates) {
+            data += ("{x:" + point.x + ", y:" + point.y + "},");
+        }
+        data = data.subString(0, data.length -1) + "]";
+        return data;
     }
 
     @ReactProp(name = "mounted")
